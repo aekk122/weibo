@@ -18,7 +18,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            session()->flash('info', '您已经登录，无需再次操作。');
+            $message = $request->is('signup') ? '您已经注册并登录' : '您已经登录，无需再次操作。';
+            session()->flash('info', $message);
             return redirect('/');
         }
 
