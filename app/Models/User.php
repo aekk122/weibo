@@ -29,6 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function statuses() {
+        return $this->hasMany(Status::class);
+    }
 
     public static function boot() {
         parent::boot();
